@@ -1,0 +1,38 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+
+      - name: Build project
+        run: |
+          mkdir -p dist
+          GOOS=linux GOARCH=amd64 go build -o dist/gcli-linux-amd64 .
+          GOOS=darwin GOARCH=amd64 go build -o dist/gcli-darwin-amd64 .
+          GOOS=windows GOARCH=amd64 go build -o dist/gcli-windows-amd64.exe .
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: |
+            dist/gcli-linux-amd64
+            dist/gcli-darwin-amd64
+            dist/gcli-windows-amd64.exe
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
