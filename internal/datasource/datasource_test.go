@@ -2,7 +2,7 @@ package datasource
 
 import (
 	"fmt"
-	"gcliv2/internal/config"
+	"gcli/internal/config"
 	"net/http"
 	"net/http/httptest"
 	"os"

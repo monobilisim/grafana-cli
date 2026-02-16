@@ -3,7 +3,7 @@ package cmd
 import (
 	"bytes"
 	"fmt"
-	"gcliv2/internal/config"
+	"gcli/internal/config"
 	"io"
 	"net/http"
 	"net/http/httptest"

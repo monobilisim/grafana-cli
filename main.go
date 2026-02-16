@@ -1,7 +1,7 @@
 package main
 
-import "gcliv2/cmd"
+import "gcli/cmd"
 
 func main() {
-    cmd.Execute()
+	cmd.Execute()
 }

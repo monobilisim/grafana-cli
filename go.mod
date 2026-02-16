@@ -1,4 +1,4 @@
-module gcliv2
+module gcli
 
 go 1.20
 

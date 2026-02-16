@@ -12,8 +12,8 @@ import (
 	"strconv"
 	"strings"
 
-	"gcliv2/internal/config"
-	"gcliv2/internal/datasource"
+	"gcli/internal/config"
+	"gcli/internal/datasource"
 
 	"github.com/spf13/cobra"
 )

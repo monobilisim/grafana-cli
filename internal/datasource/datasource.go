@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"gcliv2/internal/config"
+	"gcli/internal/config"
 	"net/http"
 )
 

@@ -10,8 +10,8 @@ import (
 	"os"
 	"os/exec"
 
-	"gcliv2/internal/config"
-	"gcliv2/internal/datasource"
+	"gcli/internal/config"
+	"gcli/internal/datasource"
 
 	"github.com/spf13/cobra"
 )
@@ -106,7 +106,7 @@ var dsRmCmd = &cobra.Command{
 		// It returns int.
 
 		// However, ResolveID is in internal package, let's use it.
-		// Need to import "gcliv2/internal/datasource" -- done above.
+		// Need to import "gcli/internal/datasource" -- done above.
 
 		// Actually, I need to check how to call ResolveID from here.
 		// Since I implemented it in `internal/datasource`, I can use `datasource.ResolveID`.

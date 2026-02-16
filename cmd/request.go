@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"gcliv2/internal/config"
+	"gcli/internal/config"
 
 	"github.com/spf13/cobra"
 )
