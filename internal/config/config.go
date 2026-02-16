@@ -23,6 +23,9 @@ type fileConfig struct {
 }
 
 func configFilePath() (string, error) {
+	if envPath := os.Getenv("GCLI_CONFIG_PATH"); envPath != "" {
+		return envPath, nil
+	}
 	home, err := os.UserHomeDir()
 	if err != nil {
 		return "", err

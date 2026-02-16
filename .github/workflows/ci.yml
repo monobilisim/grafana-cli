@@ -9,6 +9,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    services:
+      grafana:
+        image: grafana/grafana:latest
+        ports:
+          - 3000:3000
     steps:
     - uses: actions/checkout@v4
 
@@ -20,8 +25,18 @@ jobs:
     - name: Install dependencies
       run: go mod download
 
+    - name: Wait for Grafana
+      run: |
+        timeout 60s bash -c 'until curl -s http://localhost:3000/api/health; do sleep 2; done'
+
     - name: Test
-      run: go test -v ./...
+      run: |
+        export GCLI_CONFIG_PATH=$HOME/.gcli_test_config.yaml
+        go test -v ./...
+      env:
+        GRAFANA_URL: http://localhost:3000
+        GRAFANA_USER: admin
+        GRAFANA_PASS: admin
 
     - name: Build
       run: make build
